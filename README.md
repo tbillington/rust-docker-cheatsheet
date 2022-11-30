@@ -18,6 +18,13 @@ Image information for the Rust [hello world](./hello-world/)[^1] program.
 | scratch | 1.29MB | glibc | static |
 | scratch | 416KB | musl | static |
 
+
+### Webserver
+
+| Base | Size | Libc | CRT Linkage | TLS | DNS |
+| - | - | - | - | - | - |
+| scratch | 4.49MB | glibc | static | rustls | TrustDNS |
+
 ## Base Images
 
 ### Alpine
@@ -47,6 +54,18 @@ There are a number of flavours provided, however [cc](https://github.com/GoogleC
 [Scratch](https://hub.docker.com/_/scratch), while not technically an image, does provide the means to achieve the smallest image sizes.
 
 Because scratch includes nothing, you will need to provide _everything_ your application needs to operate, including libc, ssl libraries, certificates, etc.
+
+## TLS
+
+### OpenSSL
+
+
+
+### Rustls
+
+[Rustls](https://github.com/rustls/rustls) is a Rust based TLS implementation leveraging ring for cryptography and webpki for TLS certificate validation. It has [good support](https://github.com/rustls/rustls#current-features) for recent TLS features and intentionally does not provide support for [outdated or insecure](https://github.com/rustls/rustls#non-features) uses.
+
+Using rustls allows us to avoid a dependency on OpenSSL, which is usually provided by the OS.
 
 ## Concepts
 
